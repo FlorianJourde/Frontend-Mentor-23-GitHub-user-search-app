@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root
+{
+  --clr-body-background: #141c2f;
+  --clr-card-background: #1f2a48;
+  --clr-button-background: #0078ff;
+  --clr-button-text: #ffffff;
+  --clr-primary-text: #ffffff;
+  --clr-secondary-text: #adb2be;
+  --bs-primary: unset;
+  --ff-primary: "Space Mono", monospace;
+}
+
+
+body.light
+{
+  --clr-body-background: #f5f8ff;
+  --clr-card-background: #fefefe;
+  --clr-button-background: #0078ff;
+  --clr-primary-text: #24272e;
+  --clr-secondary-text: #9a9a9a;
+  --bs-primary: 0 10px 30px 0 #d6dbff;
+}
+
+body
+{
+  background-color: var(--clr-body-background);
+  color: var(--clr-primary-text);
+  font-family: var(--ff-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100svh;
+  transition: color .2s, background-color .2s;
+}
+
+.wrapper
+{
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+  flex-direction: inherit;
+  flex-wrap: inherit;
+  gap: inherit;
+  z-index: inherit;
+  max-width: 1000px;
+}
+
+#root
+{
+  width: 100%;
+}
