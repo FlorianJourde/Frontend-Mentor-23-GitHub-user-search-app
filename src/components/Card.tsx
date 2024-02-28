@@ -17,9 +17,11 @@ export default function Card(props: any) {
             <img src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover border-2 w-16 sm:w-24 border-white md:hidden" />
           </div>
           <div className="right-area flex flex-col md:flex-row flex-wrap md:items-center w-full gap-x-6 gap-y-2">
-            <h2 className="username flex-1 text-2xl md:text-3xl font-bold">{user.name}</h2>
+            <h2 className="username flex-1 text-2xl md:text-3xl font-bold">{user.name === null ? user.login : user.name }</h2>
             <p className="inscription-date text-secondary-text">Joined {user.created_at}</p>
-            <p className="identifier text-button-background w-full">@{user.login}</p>
+            <div className='w-full'>
+              <a href={`https://github.com/${user.login}`} target='_blank' className="identifier text-button-background hover:opacity-75 transition-opacity">@{user.login}</a>
+            </div>
             <p className="biography text-secondary-text w-full">{user.bio}</p>
           </div>
         </div>
@@ -38,19 +40,19 @@ export default function Card(props: any) {
           </div>
         </div>
         <div className="contact-details flex flex-col sm:grid grid-cols-2 gap-4">
-          <div className={`location flex gap-4 ${user.location === 'Not Available' ? 'opacity-50' : ''}`}>
+          <div className={`location flex items-center gap-4 ${user.location === 'Not Available' ? 'opacity-50' : ''}`}>
             <img src={locationIcon} alt="Location icon" className="location-icon object-contain max-w-6" />
             <p>{user.location}</p>
           </div>
-          <div className={`twitter flex gap-4 ${user.twitter_username === 'Not Available' ? 'opacity-50' : ''}`}>
+          <div className={`twitter flex items-center gap-4 ${user.twitter_username === 'Not Available' ? 'opacity-50' : ''}`}>
             <img src={twitterIcon} alt="Twitter icon" className="twitter-icon object-contain max-w-6" />
             <p>{user.twitter_username}</p>
           </div>
-          <div className={`website flex gap-4 ${user.blog === 'Not Available' ? 'opacity-50' : ''}`}>
+          <div className={`website flex items-center gap-4 ${user.blog === 'Not Available' ? 'opacity-50' : ''}`}>
             <img src={websiteIcon} alt="Website icon" className="website-icon object-contain max-w-6" />
-            {user.blog === 'Not Available' ? <p>{user.blog}</p> : <a className='underline' href={`https://${user.blog}`} target='_blank'>{user.blog}</a>}
+            {user.blog === 'Not Available' ? <p>{user.blog}</p> : <a className='underline' href={user.blog} target='_blank'>{user.blog}</a>}
           </div>
-          <div className={`company flex gap-4 ${user.company === 'Not Available' ? 'opacity-50' : ''}`}>
+          <div className={`company flex items-center gap-4 ${user.company === 'Not Available' ? 'opacity-50' : ''}`}>
             <img src={companyIcon} alt="Company icon" className="company-icon object-contain max-w-6" />
             <p>{user.company}</p>
           </div>
