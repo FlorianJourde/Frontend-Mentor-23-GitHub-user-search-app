@@ -12,4 +12,4 @@ Component based on the [GitHub users API](https://docs.github.com/en/rest/refere
 
 Twenty third exercice from Frontend Mentor website. The purpose is to train myself to React framework by building projects.
 
-[![Preview site](https://img.shields.io/badge/Site%20web--e1e3f0?style=for-the-badge&logo=InternetExplorer&logoColor=white)](https://florianjourde.com/)
+[![Preview site](https://img.shields.io/badge/Site%20web--e1e3f0?style=for-the-badge&logo=InternetExplorer&logoColor=white)](https://github-user-search-app-with-react-and.onrender.com/)
