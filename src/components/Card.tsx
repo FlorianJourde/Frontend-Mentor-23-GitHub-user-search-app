@@ -8,7 +8,7 @@ export default function Card(props: any) {
 
   return (
     <main className="card bg-card-background p-8 rounded-2xl flex gap-8 shadow-primary transition-colors">
-      <aside className='w-52 md:block hidden'>
+      <aside className='w-40 md:block hidden'>
         <img src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover border-4 border-white" />
       </aside>
       <div className="user-details flex-1 flex flex-col gap-8">
@@ -20,7 +20,7 @@ export default function Card(props: any) {
             <h2 className="username flex-1 text-2xl md:text-4xl font-bold">{user.name}</h2>
             <p className="inscription-date text-secondary-text">Joined {user.created_at}</p>
             <p className="identifier text-button-background w-full">@{user.login}</p>
-            <p className="biography w-full">{user.bio}</p>
+            <p className="biography text-secondary-text w-full">{user.bio}</p>
           </div>
         </div>
         <div className="highlights-informations flex flex-wrap gap-4 bg-body-background justify-around py-4 px-6 md:py-6 md:px-10 rounded-xl transition-colors">
