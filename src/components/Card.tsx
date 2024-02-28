@@ -48,7 +48,7 @@ export default function Card(props: any) {
           </div>
           <div className={`website flex gap-4 ${user.blog === 'Not Available' ? 'opacity-50' : ''}`}>
             <img src={websiteIcon} alt="Website icon" className="website-icon object-contain max-w-6" />
-            {user.blog === 'Not Available' ? <p>{user.blog}</p> : <a className='underline' href={user.blog} target='_blank'>{user.blog}</a>}
+            {user.blog === 'Not Available' ? <p>{user.blog}</p> : <a className='underline' href={`https://${user.blog}`} target='_blank'>{user.blog}</a>}
           </div>
           <div className={`company flex gap-4 ${user.company === 'Not Available' ? 'opacity-50' : ''}`}>
             <img src={companyIcon} alt="Company icon" className="company-icon object-contain max-w-6" />
