@@ -1,29 +1,15 @@
 import { useEffect, useState } from 'react'
 import { format } from 'date-fns'
-import sunThemeIcon from './assets/icon-sun.svg'
-import moonThemeIcon from './assets/icon-moon.svg'
-import searchIcon from './assets/icon-search.svg'
-import locationIcon from './assets/icon-location.svg'
-import companyIcon from './assets/icon-company.svg'
-import twitterIcon from './assets/icon-twitter.svg'
-import websiteIcon from './assets/icon-website.svg'
 import gitHubProfilePicture from './assets/github-profile.png'
+import { Header } from './components/Header'
+import Search from './components/Search'
+import Card from './components/Card'
 
 function App() {
-  const [username, setUsername] = useState<string>('');
+  const [username, setUsername] = useState<string>('florianjourde');
   const [user, setUser] = useState<User>(initDefaultUser);
   const [theme, setTheme] = useState<string>('light');
-
-
-  useEffect(() => {
-    if (theme === 'dark') {
-      document.body.classList.remove('dark');
-      document.body.classList.add('light');
-    } else {
-      document.body.classList.remove('light');
-      document.body.classList.add('dark');
-    }
-  }, [theme]);
+  const [searchError, setSearchError] = useState<string>('')
 
   interface User {
     avatar_url: string,
@@ -41,6 +27,20 @@ function App() {
     public_repos: string,
     twitter_username: string,
   }
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.body.classList.remove('dark');
+      document.body.classList.add('light');
+    } else {
+      document.body.classList.remove('light');
+      document.body.classList.add('dark');
+    }
+  }, [theme]);
+
+  useEffect(() => {
+    fetchDatas(username)
+  }, []);
 
   function initDefaultUser(): User {
     let defaultUserObject = {
@@ -81,7 +81,7 @@ function App() {
   function mapUser(obj: Object, fn: Function) {
     const newObject: any = {};
 
-    (Object.keys(obj) as (keyof typeof obj)[]).forEach((key) => {      
+    (Object.keys(obj) as (keyof typeof obj)[]).forEach((key) => {
       newObject[key] = fn(key, obj[key]);
     });
 
@@ -100,77 +100,34 @@ function App() {
     setUsername(event.target.value)
   }
 
-  async function handleSubmit(event: any) {
-    event.preventDefault();
-
+  async function fetchDatas(username: string) {
     await fetch(`https://api.github.com/users/${username}`)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          setSearchError('')
+          return response.json()
+        } else {
+          setSearchError('error')
+          throw new Error("Status code error :" + response.status);
+        }
+      })
       .then((data) => {
         setUserObject(data as User)
-      });
+      })
+  }
+
+  function handleSubmit(event: any) {
+    event.preventDefault();
+    fetchDatas(username)
   }
 
   return (
     <>
       <div className="wrapper">
-        <div className="github-search-app flex flex-col gap-8">
-          <header className='flex gap-4 justify-between'>
-            <h1 className='company text-2xl font-bold'>devfinder</h1>
-            <div onClick={() => theme === 'dark' ? setTheme('light') : setTheme('dark')} className='flex gap-2 items-center cursor-pointer' id="theme-button">
-              <p className='uppercase tracking-widest text-secondary-text'>{theme}</p>
-              <img src={theme === 'dark' ? moonThemeIcon : sunThemeIcon} alt="" className="theme-icon object-contain" />
-            </div>
-          </header>
-          <form className='bg-card-background p-3 rounded-2xl flex gap-4 shadow-primary' onSubmit={handleSubmit}>
-            <img src={searchIcon} alt="" className="magnifying-glass-picto object-contain m-4" />
-            <input className="flex-1 bg-transparent" type="text" onChange={handleChange} />
-            <input className='bg-button-background text-button-text rounded-lg px-4 py-2 cursor-pointer' type="submit" value="Submit" onSubmit={handleSubmit} />
-          </form>
-          <main className="card bg-card-background p-8 rounded-2xl flex gap-12 shadow-primary">
-            <aside className='w-52'>
-              <img src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover border-2 border-white" />
-            </aside>
-            <div className="user-details flex-1 flex flex-col gap-8">
-              <div className="user-header flex items-center gap-4 flex-wrap">
-                <h2 className="username flex-1 text-4xl font-bold">{user.name}</h2>
-                <p className="inscription-date text-secondary-text">Joined {user.created_at}</p>
-                <p className="identifier text-button-background w-full">@{user.login}</p>
-              </div>
-              <p className="biography">{user.bio}</p>
-              <div className="highlights-informations flex gap-4 bg-body-background justify-between py-6 px-10 rounded-xl">
-                <div className="repositories">
-                  <p>Repos</p>
-                  <p className='text-4xl font-bold'>{user.public_repos}</p>
-                </div>
-                <div className="followers">
-                  <p>Followers</p>
-                  <p className='text-4xl font-bold'>{user.followers}</p>
-                </div>
-                <div className="following">
-                  <p>Following</p>
-                  <p className='text-4xl font-bold'>{user.following}</p>
-                </div>
-              </div>
-              <div className="contact-details grid grid-cols-2 gap-4">
-                <div className="location flex gap-4">
-                  <img src={locationIcon} alt="Location icon" className="location-icon object-contain" />
-                  <p>{user.location}</p>
-                </div>
-                <div className="twitter flex gap-4">
-                  <img src={twitterIcon} alt="Twitter icon" className="twitter-icon object-contain" />
-                  <p>{user.twitter_username}</p>
-                </div>
-                <div className="website flex gap-4">
-                  <img src={websiteIcon} alt="Website icon" className="website-icon object-contain" />
-                  <p>{user.blog}</p>
-                </div>
-                <div className="company flex gap-4">
-                  <img src={companyIcon} alt="Company icon" className="company-icon object-contain" />
-                  <p>{user.company}</p>
-                </div>
-              </div>
-            </div>
-          </main>
+        <div className="github-search-app flex flex-col gap-8 my-5 max-w-[400px] sm:max-w-[600px] md:max-w-[unset] mx-auto">
+          <Header theme={theme} setTheme={setTheme} />
+          <Search searchError={searchError} handleSubmit={handleSubmit} handleChange={handleChange} />
+          <Card user={user} />
         </div>
       </div>
     </>
