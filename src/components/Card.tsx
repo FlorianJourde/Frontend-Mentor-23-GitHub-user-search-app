@@ -44,13 +44,13 @@ export default function Card(props: any) {
             <img src={locationIcon} alt="Location icon" className="location-icon object-contain max-w-6" />
             <p>{user.location}</p>
           </div>
+          <div className={`website flex items-center gap-4 ${user.blog === 'Not Available' ? 'opacity-50' : ''}`}>
+            <img src={websiteIcon} alt="Website icon" className="website-icon object-contain max-w-6" />
+            {user.blog === 'Not Available' ? <p>{user.blog}</p> : <a className='underline' href={user.blog} target='_blank'>Website</a>}
+          </div>
           <div className={`twitter flex items-center gap-4 ${user.twitter_username === 'Not Available' ? 'opacity-50' : ''}`}>
             <img src={twitterIcon} alt="Twitter icon" className="twitter-icon object-contain max-w-6" />
             <p>{user.twitter_username}</p>
-          </div>
-          <div className={`website flex items-center gap-4 ${user.blog === 'Not Available' ? 'opacity-50' : ''}`}>
-            <img src={websiteIcon} alt="Website icon" className="website-icon object-contain max-w-6" />
-            {user.blog === 'Not Available' ? <p>{user.blog}</p> : <a className='underline' href={user.blog} target='_blank'>{user.blog}</a>}
           </div>
           <div className={`company flex items-center gap-4 ${user.company === 'Not Available' ? 'opacity-50' : ''}`}>
             <img src={companyIcon} alt="Company icon" className="company-icon object-contain max-w-6" />
