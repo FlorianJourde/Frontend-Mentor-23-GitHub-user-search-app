@@ -38,19 +38,19 @@ export default function Card(props: any) {
           </div>
         </div>
         <div className="contact-details flex flex-col sm:grid grid-cols-2 gap-4">
-          <div className="location flex gap-4">
+          <div className={`location flex gap-4 ${user.location === 'Not Available' ? 'opacity-50' : ''}`}>
             <img src={locationIcon} alt="Location icon" className="location-icon object-contain max-w-6" />
             <p>{user.location}</p>
           </div>
-          <div className="twitter flex gap-4">
+          <div className={`twitter flex gap-4 ${user.twitter_username === 'Not Available' ? 'opacity-50' : ''}`}>
             <img src={twitterIcon} alt="Twitter icon" className="twitter-icon object-contain max-w-6" />
             <p>{user.twitter_username}</p>
           </div>
-          <div className="website flex gap-4">
+          <div className={`website flex gap-4 ${user.blog === 'Not Available' ? 'opacity-50' : ''}`}>
             <img src={websiteIcon} alt="Website icon" className="website-icon object-contain max-w-6" />
-            <p>{user.blog}</p>
+            {user.blog === 'Not Available' ? <p>{user.blog}</p> : <a className='underline' href={user.blog} target='_blank'>{user.blog}</a>}
           </div>
-          <div className="company flex gap-4">
+          <div className={`company flex gap-4 ${user.company === 'Not Available' ? 'opacity-50' : ''}`}>
             <img src={companyIcon} alt="Company icon" className="company-icon object-contain max-w-6" />
             <p>{user.company}</p>
           </div>
