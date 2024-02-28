@@ -8,7 +8,7 @@ export default function Search(props: any) {
       <img src={searchIcon} alt="" className="magnifying-glass-picto object-contain m-4" />
       <input className="flex-grow bg-transparent" type="text" onChange={handleChange} placeholder='Search GitHub username…' />
       <p className='text-red-600 hidden'>No result</p>
-      <input className='bg-button-background w-full sm:w-[unset] hover:opacity-75 text-button-text font-bold rounded-lg px-6 py-4 cursor-pointer' type="submit" value="Submit" onSubmit={handleSubmit} />
+      <input className='bg-button-background w-full sm:w-[unset] hover:opacity-75 text-button-text font-bold rounded-lg px-6 py-4 cursor-pointer transition-opacity' type="submit" value="Submit" onSubmit={handleSubmit} />
     </form>
   )
 }
