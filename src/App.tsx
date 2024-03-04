@@ -39,7 +39,7 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    fetchDatas(username)
+    fetchDatas(username);
   }, []);
 
   function initDefaultUser(): User {
@@ -49,14 +49,14 @@ function App() {
       blog: 'www.portfolio.com',
       company: 'Company',
       created_at: 'on...',
-      following: '-',
-      followers: '-',
+      following: '0',
+      followers: '0',
       id: 0,
       location: 'Location',
       login: 'identifier',
       message: 'User not found',
       name: 'Username',
-      public_repos: '-',
+      public_repos: '0',
       twitter_username: 'Twitter',
     }
 
@@ -126,7 +126,7 @@ function App() {
       <div className="wrapper">
         <div className="github-search-app flex flex-col gap-8 my-5 max-w-[400px] sm:max-w-[600px] md:max-w-[unset] mx-auto">
           <Header theme={theme} setTheme={setTheme} />
-          <Search searchError={searchError} handleSubmit={handleSubmit} handleChange={handleChange} />
+          <Search searchError={searchError} handleSubmit={handleSubmit} handleChange={handleChange} username={username}/>
           <Card user={user} />
         </div>
       </div>
