@@ -17,6 +17,7 @@ export function Header(props: Theme) {
         <motion.h1
           initial={{ y: -20, opacity: 0, filter: "blur(5px)" }}
           animate={{ y: 0, opacity: 1, filter: "blur(0)" }}
+          transition={{ delay: .4 }}
           className='company text-2xl font-bold'>devfinder
         </motion.h1>
       </AnimatePresence>
@@ -25,7 +26,7 @@ export function Header(props: Theme) {
         <motion.button
           initial={{ y: -20, opacity: 0, filter: "blur(5px)" }}
           animate={{ y: 0, opacity: 1, filter: "blur(0)" }}
-          transition={{ delay: .3 }}
+          transition={{ delay: .8 }}
           onClick={() => theme === 'dark' ? setTheme('light') : setTheme('dark')} className=' cursor-pointer overflow-hidden' id="theme-button">
           <AnimatePresence mode='wait' initial={false} >
             {theme === 'dark' ? (
@@ -52,6 +53,7 @@ export function Header(props: Theme) {
           </AnimatePresence>
         </motion.button>
       </AnimatePresence>
+      
     </header>
   )
 }

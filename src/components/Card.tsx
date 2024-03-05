@@ -18,12 +18,12 @@ export default function Card(props: any) {
         key={user.id}
         className="card bg-card-background p-8 rounded-2xl flex gap-8 shadow-primary transition-colors">
         <aside className='w-36 md:block hidden'>
-          <img src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover border-4 border-white" />
+          <img src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover outline outline-4 outline-white" />
         </aside>
         <div className="user-details flex-1 flex flex-col gap-8">
           <div className="user-header flex items-start gap-4 md:gap-8">
             <div className="left-area md:hidden">
-              <img src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover border-2 w-16 sm:w-24 border-white md:hidden" />
+              <img src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover w-16 sm:w-24 outline outline-white outline-2 md:hidden" />
             </div>
             <div className="right-area flex flex-col md:flex-row flex-wrap md:items-center w-full gap-x-6 gap-y-2">
               <h2 className="username flex-1 text-2xl md:text-3xl font-bold">{user.name === null ? user.login : user.name}</h2>
