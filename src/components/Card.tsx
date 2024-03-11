@@ -23,7 +23,15 @@ export default function Card(props: any) {
         <div className="user-details flex-1 flex flex-col gap-8">
           <div className="user-header flex items-start gap-4 md:gap-8">
             <div className="left-area md:hidden">
-              <img src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover w-16 sm:w-24 outline outline-white outline-2 md:hidden" />
+              <AnimatePresence mode='wait'>
+
+                <motion.img
+                  initial={{ y: 10, opacity: 0, filter: "blur(5px)" }}
+                  animate={{ y: 0, opacity: 1, filter: "blur(0)" }}
+                  transition={{ delay: .4 }}
+                  src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover w-16 sm:w-24 outline outline-white outline-2 md:hidden" />
+
+              </AnimatePresence>
             </div>
             <div className="right-area flex flex-col md:flex-row flex-wrap md:items-center w-full gap-x-6 gap-y-2">
               <h2 className="username flex-1 text-2xl md:text-3xl font-bold">{user.name === null ? user.login : user.name}</h2>
