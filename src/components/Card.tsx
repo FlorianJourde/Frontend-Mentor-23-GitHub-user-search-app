@@ -18,7 +18,7 @@ export default function Card(props: any) {
         key={user.id}
         className="card bg-card-background p-8 rounded-2xl flex gap-8 shadow-primary transition-colors">
         <aside className='w-36 md:block hidden'>
-          <img src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover outline outline-4 outline-white" />
+          <img src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover shadow-[0_0_0_4px_white]" />
         </aside>
         <div className="user-details flex-1 flex flex-col gap-8">
           <div className="user-header flex items-start gap-4 md:gap-8">
@@ -29,7 +29,7 @@ export default function Card(props: any) {
                   initial={{ y: 10, opacity: 0, filter: "blur(5px)" }}
                   animate={{ y: 0, opacity: 1, filter: "blur(0)" }}
                   transition={{ delay: .4 }}
-                  src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover w-16 sm:w-24 outline outline-white outline-2 md:hidden" />
+                  src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover w-16 sm:w-24 md:hidden shadow-[0_0_0_2px_white]" />
 
               </AnimatePresence>
             </div>
