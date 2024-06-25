@@ -18,7 +18,7 @@ export default function Card(props: any) {
         key={user.id}
         className="card bg-card-background p-8 rounded-2xl flex gap-8 shadow-primary transition-colors">
         <aside className='w-36 md:block hidden'>
-          <img src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover shadow-[0_0_0_4px_white]" />
+          <img src={user.avatar_url} alt="" className="profile-picture rounded-full object-cover shadow-[0_0_0_4px_white] transition-shadow" />
         </aside>
         <div className="user-details flex-1 flex flex-col gap-8">
           <div className="user-header flex items-start gap-4 md:gap-8">
