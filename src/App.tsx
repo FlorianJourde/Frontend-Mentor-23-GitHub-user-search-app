@@ -57,7 +57,7 @@ function App() {
       message: 'User not found',
       name: 'Username',
       public_repos: '0',
-      twitter_username: 'Twitter',
+      twitter_username: 'X',
     }
 
     return defaultUserObject;
