@@ -46,7 +46,7 @@ function App() {
     let defaultUserObject = {
       avatar_url: `${gitHubProfilePicture}`,
       bio: '',
-      blog: 'www.portfolio.com',
+      blog: 'https://example.com/',
       company: 'Company',
       created_at: 'on...',
       following: '0',
