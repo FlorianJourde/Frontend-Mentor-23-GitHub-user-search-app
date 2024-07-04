@@ -1,6 +1,6 @@
 import locationIcon from '../assets/icon-location.svg'
 import companyIcon from '../assets/icon-company.svg'
-import twitterIcon from '../assets/icon-twitter.svg'
+import xIcon from '../assets/icon-x.svg'
 import websiteIcon from '../assets/icon-website.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 import CountUp from 'react-countup'
@@ -45,17 +45,14 @@ export default function Card(props: any) {
           <div className="highlights-informations flex flex-wrap gap-4 bg-body-background justify-around py-4 px-6 md:py-6 md:px-8 rounded-xl transition-colors">
             <div className="repositories">
               <p className='text-sm md:text-base'>Repos</p>
-              {/* <p className='text-2xl md:text-3xl font-bold'>{user.public_repos}</p> */}
               <p className='text-2xl md:text-3xl font-bold'><CountUp end={user.public_repos} delay={0} /></p>
             </div>
             <div className="followers">
               <p className='text-sm md:text-base'>Followers</p>
-              {/* <p className='text-2xl md:text-3xl font-bold'>{user.followers}</p> */}
               <p className='text-2xl md:text-3xl font-bold'><CountUp end={user.followers} delay={0.3} /></p>
             </div>
             <div className="following">
               <p className='text-sm md:text-base'>Following</p>
-              {/* <p className='text-2xl md:text-3xl font-bold'>{user.following}</p> */}
               <p className='text-2xl md:text-3xl font-bold'><CountUp end={user.following} delay={0.6} /></p>
             </div>
           </div>
@@ -69,8 +66,8 @@ export default function Card(props: any) {
               {user.blog === 'Not Available' ? <p>{user.blog}</p> : <a className='underline' href={user.blog} target='_blank'>Website</a>}
             </div>
             <div className={`twitter flex items-center gap-4 ${user.twitter_username === 'Not Available' ? 'opacity-50' : ''}`}>
-              <img src={twitterIcon} alt="Twitter icon" className="twitter-icon object-contain max-w-6" />
-              <p>{user.twitter_username}</p>
+              <img src={xIcon} alt="Twitter icon" className="twitter-icon object-contain max-w-6" />
+              {user.twitter_username === 'Not Available' ? <p>{user.twitter_username}</p> : <a className='underline' href={`https://x.com/${user.twitter_username}`}  target='_blank'>{user.twitter_username}</a>}
             </div>
             <div className={`company flex items-center gap-4 ${user.company === 'Not Available' ? 'opacity-50' : ''}`}>
               <img src={companyIcon} alt="Company icon" className="company-icon object-contain max-w-6" />
